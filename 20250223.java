@@ -32,3 +32,13 @@ float,doubleは真に厳密な計算ができないため、金額の計算に�
 
 変数の初期化とは変数宣言と代入を１行で行うこと
 finalをつけて宣言することで変数を定数にすることができる
+
+練習問題
+public class Main {
+    public static void main(String [] args){
+        int a = 3;
+        int b = 5;
+        int c = a*b;
+        System.out.println("縦幅3 横幅5 の長方形の面積は、"+c );
+    }
+}
