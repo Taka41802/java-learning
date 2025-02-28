@@ -35,3 +35,33 @@ public class Main {
     }
 }
 結果　あなたは来年、32歳になりますね。
+
+練習問題
+public class Main {
+    public static void main(String[] args) {
+        int x = 5;
+        int y = 10;
+        String ans = "x+yは" + x + y;
+        System.out.println(ans);
+    }
+}
+回答
+public class Main {
+    public static void main(String[] args) {
+        int x = 5;
+        int y = 10;
+        int z = x+y;
+        String ans = "x+yは" + z;
+        System.out.println(ans);
+    }
+}
+
+模範回答
+public class Main {
+    public static void main(String[] args) {
+        int x = 5;
+        int y = 10;
+        String ans = "x+yは" + (x + y);
+        System.out.println(ans);
+    }
+}
