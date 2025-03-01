@@ -91,3 +91,24 @@ public class Main {
         }
     }
 }
+
+制御構造のネスト
+for文のループを2重にして九九の表を出力する
+public class Main {
+    public static void main(String[] args) {
+        for (int i = 1; i < 10; i++) {
+            for (int j = 1;j < 10;j++) {
+                System.out.print(i * j);  // 掛け算の結果を出力
+                System.out.print(" ");    // 空白を出力
+            }
+            System.out.println("");     // 改行を出力
+        }
+    }
+}
+
+繰り返しの中断
+javaでは2つ中断方法がある
+・break文
+　繰り返し処理自体を中断できる
+・continue文
+　今回の周だけを中断して次の周にいける
