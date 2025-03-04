@@ -255,7 +255,93 @@ public class Main {
 オーバーロードの利用
 ・メソッド名に同じ名前をつけることはできない
 例外的に処理が似ているものを同じ名前のメソッドにすることができる
-        
+public class Main {
+    // 1つ目のaddメソッド
+    public static int add(int x, int y) {
+        return x + y;
+    }
+    // 2つ目のaddメソッド
+    public static double add(double x, double y) {
+        return x + y;
+    }
+    // 3つ目のaddメソッド
+    public static String add(String x, String y) {
+        return x + y;
+    }
+    public static void main(String[] args) {
+        System.out.println(add(10, 20));
+        /* 1つ目のaddメソッドが呼び出される */
+        System.out.println(add(3.5, 2.7));
+        /* 2つ目のaddメソッドが呼び出される */
+        System.out.println(add("Hello", "World"));
+    }                    /* 3つ目のaddメソッドが呼び出される */
+
+}
+
+以下のように引数が違う場合も使用できる
+public class Main {
+    public static int add(int x, int y) {
+        return x + y;
+    }
+    public static int add(int x, int y, int z) {
+        return x + y + z;
+    }
+    public static void main(String[] args){
+        System.out.println("10+20=" + add(10, 20));
+        System.out.println("10+20+30=" + add(10, 20, 30));
+    }
+}
+
+引数に配列を用いる方法
+public class Main {
+    // int型配列を受け取り、すべての要素を表示するメソッド
+    public static void printArray(int[] array) {
+        for (int element : array) {
+            System.out.println(element);
+        }
+    }
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3};
+        printArray(array);    // 配列を渡す
+    }
+}
+
+メソッドで配列を呼び出した場合、値渡しではなく参照渡しになるため呼び出し先で加えた変更が呼び出し元にも影響することになる
+同じ配列を参照していることを確認する
+public class Main {
+    // int型配列を受け取り、
+    // 配列内の要素すべてに1を加えるメソッド
+    public static void incArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i]++;
+        }
+    }
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3};
+        incArray(array);
+        for (int i : array) {
+            System.out.println(i);
+        }
+    }
+}
+
+
+戻り値に配列を用いる
+public class Main {
+    public static int[] makeArray(int size) {
+        int[] newArray = new int[size];
+        for (int i = 0; i < newArray.length; i++ ) {
+            newArray[i] = i;
+        }
+        return newArray;
+    }
+    public static void main(String[] args) {
+        int[] array = makeArray(3);
+        for (int i : array) {
+            System.out.println(i);
+        }
+    }
+}
 
 
 
