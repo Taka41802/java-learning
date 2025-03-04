@@ -95,3 +95,50 @@ public class Main{
         }
     }
 }
+
+public class Main {
+    public static void main(String[] args) {
+        int[] counts = null;
+        float[] heights = {171.3F, 175.0F};
+        System.out.println(counts[1]);
+        System.out.println(heights[2]);
+    }
+}
+Exception in thread "main" java.lang.NullPointerException: Cannot load from int array because "<local1>" is null
+at Main.main(Main.java:5)
+6　ArrayIndexOutOfBoundsException
+
+自分の回答
+public class Main{
+    public static void main(String[] args){
+        int [] numbers = new int{3,4,9};
+        System.out.println("1桁の数字を入力してください");
+        int input = new java.util.Scanner(System.in).nextInt();
+        for (int t : numbers){
+            if (t == 9){
+                System.out.println("当たり！");
+            }
+        }
+    }
+}
+
+模範回答
+public class Main {
+    public static void main(String[] args) {
+        // (1)配列の準備
+        int[] numbers = {3, 4, 9};
+
+        // (2)メッセージの表示
+        System.out.println("1桁の数字を入力してください");
+
+        // (3)キーボードからの数字入力
+        int input = new java.util.Scanner(System.in).nextInt();
+
+        // (4)配列を回しながら判定
+        for (int n : numbers) {
+            if (n == input) {
+                System.out.println("アタリ！");
+            }
+        }
+    }
+}
