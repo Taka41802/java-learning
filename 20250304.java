@@ -142,3 +142,90 @@ public class Main {
         }
     }
 }
+
+シンプルなメソッドの定義
+public class Main {
+    public static void hello() {
+        System.out.println("湊さん、こんにちは");
+    }
+}
+
+メソッドの呼び出し
+・メソッドは必ず呼び出す必要がある
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("メソッドを呼び出します");
+        hello();
+        System.out.println("メソッドの呼び出しが終わりました");
+    }
+    public static void hello() {
+        System.out.println("湊さん、こんにちは");
+    }
+}
+
+Mainメソッド以外からメソッドを呼び出す
+public class Main {
+    public static void methodA() {
+        System.out.println("methodA");
+        methodB();
+    }
+    public static void methodB() {
+        System.out.println("methodB");
+    }
+    public static void main(String[] args) {
+        methodA();
+    }
+}
+
+引数の例
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("メソッドを呼び出します");
+        hello("湊");
+        hello("朝香");
+        hello("菅原");
+        System.out.println("メソッドの呼び出しが終わりました");
+    }
+    public static void hello(String name) {
+        System.out.println(name + "さん、こんにちは");
+    }
+}
+引数を渡さない場合でもhello()のように必ず()をつける
+        ()には何も渡さないという意味も含まれている
+
+引数が複数ある場合
+public class Main {
+    public static void main(String[] args) {
+        add(100, 20);
+        add(200, 50);
+    }
+    // 複数の値を受け取るaddメソッド
+    public static void add(int x, int y) {
+        int ans = x + y;
+        System.out.println(x + "+" + y + "=" + ans);
+    }
+}
+
+引数使わずに値を渡せるのか？（コンパイルエラー）
+public class Main {
+    public static void main(String[] args) {
+        int x = 100;
+        int y = 10;
+        add();
+    }
+    public static void add() {
+        int ans = x + y;
+        System.out.println(x + "+" + y + "=" + ans);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
