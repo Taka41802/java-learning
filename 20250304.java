@@ -344,8 +344,54 @@ public class Main {
 }
 
 
+練習問題
+自分の回答
+public class Main{
+    public static void introduceOneself(String[] args){
+        String name = "鈴木太郎";
+        int age = 27;
+        double height = "170.5";
+        cher zodiac = "牛";
+        System.out.println("私は" + name + age + "です。");
+        System.out.println("身長" + height "で、干支は" + zodiac "になります");
+    }
+    public static void main(String[] args){
+        introduceOneself();
+    }
+}
 
+模範回答
+public class Main {
+    public static void main(String[] args) {
+        introduceOneself();
+    }
 
+    public static void introduceOneself() {
+        String name = "Minato";
+        int age = 22;
+        double height = 169.9;
+        char zodiac = '辰';
+        System.out.println("私の名前は" + name + "です");
+        System.out.println("歳は" + age + "です");
+        System.out.println("身長は" + height + "cmです");
+        System.out.println("十二支は" + zodiac + "です");
+    }
+}
+
+回答修正
+public class Main{
+    public static void introduceOneself(){
+        String name = "鈴木太郎";
+        int age = 27;
+        double height = 170.5;
+        char zodiac = '牛';
+        System.out.println("私は" + name + "、年齢は" + age + "です。");
+        System.out.println("身長" + height + "で、干支は" + zodiac + "になります");
+    }
+    public static void main(String[] args){
+        introduceOneself();
+    }
+}
 
 
 
