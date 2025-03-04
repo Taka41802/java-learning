@@ -444,6 +444,55 @@ public class Main {
     }
 }
 
+ソースファイルを分ける
+計算機プログラム
+public class Calc {
+    public static void main(String[] args) {
+        int a = 10; int b = 2;
+        int total = tasu(a, b);
+        int delta = hiku(a, b);
+        System.out.println("足すと" + total + "、引くと" + delta);
+    }
+    public static int tasu(int a, int b) {
+        return (a + b);
+    }
+    public static int hiku(int a, int b) {
+        return (a - b);
+    }
+}
+
+新しくクラスを作る
+public class CalcLogic {
+    public static int tasu(int a, int b) {
+        return (a + b);
+    }
+    public static int hiku(int a, int b) {
+        return (a - b);
+    }
+}
+
+以下残されたmainメソッド
+public class Calc {
+    public static void main(String[] args) {
+        int a = 10; int b = 2;
+        int total = tasu(a, b);
+        int delta = hiku(a, b);
+        System.out.println("足すと" + total + "、引くと" + delta);
+    }
+}
+
+このままだとコンパイルエラーになるため書き換える
+public class Calc {
+    public static void main(String[] args) {
+        int a = 10; int b = 2;
+        int total = CalcLogic.tasu(a, b);
+        int delta = CalcLogic.hiku(a, b);
+        System.out.println("足すと" + total + "、引くと" + delta);
+    }
+}
+
+
+
 
 
 
