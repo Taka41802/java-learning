@@ -379,3 +379,49 @@ public int pray(int sec) {
     System.out.println("MPが" + recoverActual + "回復した");
     return recoverActual;
 }
+
+heroクラスをインスタンス化して利用する
+public class Main{
+    public static void main(String[] args) {
+        Hero h;
+        h = new Hero();
+        h.hp = 100;
+    }
+}
+
+2つのHero型変数を利用する
+public class Main {
+    public static void main(String[] args) {
+        Hero h1;
+        h1 = new Hero();
+        h1.hp = 100;
+        Hero h2;
+        h2 = h1;
+        h2.hp = 200;
+        System.out.println(h1.hp);
+    }
+}
+
+
+Sword型フィールドを持つHeroクラス
+public class Main {
+    public static void main(String[] args) {
+        Hero h1;
+        h1 = new Hero();
+        h1.hp = 100;
+        Hero h2;
+        h2 = h1;
+        h2.hp = 200;
+        System.out.println(h1.hp);
+    }
+}
+// 次にHeroクラスを定義する
+public class Hero {
+    String name;
+    int hp;
+    Sword sword;
+    public void attack() {
+        System.out.println(this.name + "は攻撃した！");
+        System.out.println("敵に5ポイントのダメージをあたえた！");
+    }
+}
