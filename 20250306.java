@@ -29,8 +29,20 @@ public class Calc {
     }
 }
 
+javaには名前空間の概念がある
+パッケージが違えば同じクラス名を使用することができる
+他の会社などとパッケージ名が被ってしまう可能性があるため、会社のドメイン名を前後逆にして使用することが多い
 
-
+APIを利用する
+public class Main {
+    public static void main(String[] args) {
+        int[] heights = {172, 149, 152, 191, 155};
+        java.util.Arrays.sort(heights);
+        for (int h : heights) {
+            System.out.println(h);
+        }
+    }
+}
 
 
 
