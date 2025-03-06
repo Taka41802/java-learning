@@ -289,10 +289,38 @@ public class Main {
     }
 }
 
+お化けキノコクラスの定義
+public class Matango {
+    int hp;
+    final int LEVEL = 10;
+    char suffix;
+    public void run() {
+        System.out.println("お化けキノコ" + this.suffix + "は逃げ出した！");
+    }
+}
 
+仮想世界に勇者とお化けキノコ２匹を生み出す
+public class Main {
+    public static void main(String[] args) {
+        Hero h = new Hero();
+        h.name = "ミナト";
+        h.hp = 100;
 
+        Matango m1 = new Matango();
+        m1.hp = 50;
+        m1.suffix = 'A';
 
+        Matango m2 = new Matango();
+        m2.hp = 48;
+        m2.suffix = 'B';
 
+        // 冒険のはじまり
+        h.slip();
+        m1.run();
+        m2.run();
+        h.run();
+    }
+}
 
 
 
