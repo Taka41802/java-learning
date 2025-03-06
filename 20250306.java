@@ -228,6 +228,75 @@ public class Hero {
     }
 }
 
+hero型の変数を宣言
+public class Main {
+    public static void main(String[] args) {
+        Hero h;
+    }
+}
+
+勇者インスタンスを生成
+public class Main {
+    public static void main(String[] args) {
+        // 1.勇者を生成
+        Hero h = new Hero();
+    }
+}
+
+勇者インスタンスを生成して初期値を代入
+public class Main {
+    public static void main(String[] args) {
+        // 1.勇者を生成
+        Hero h = new Hero();
+        // 2.フィールドに初期値をセット
+        h.name = "ミナト";
+        h.hp = 100;
+        System.out.println("勇者" + h.name + "を生み出しました！");
+    }
+}
+
+仮想世界に勇者を生み出すプログラム
+public class Main {
+    public static void main(String[] args) {
+        // 1.勇者を生成
+        Hero h = new Hero();
+        // 2.フィールドに初期値をセット
+        h.name = "ミナト";
+        h.hp = 100;
+        System.out.println("勇者" + h.name + "を生み出しました！");
+        // 3.勇者のメソッドを呼び出してゆく
+        h.sit(5);
+        h.slip();
+        h.sit(25);
+        h.run();
+    }
+}
+
+オブジェクト指向を使わない方法で作ったプログラム
+public class Main {
+    public static void main(String[] args) {
+        int yusha_hp = 100;
+        int matango1_hp = 50;
+        int matango2_hp = 48;
+        String yusha_name = "ミナト";
+        int matango1_level = 10;
+        int matango2_level = 10;
+        System.out.println(yusha_name + "は5秒座った！");
+        yusha_hp += 5;
+        System.out.println("HPが5ポイント回復した");
+        /* ： */
+        /* ： */
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 
