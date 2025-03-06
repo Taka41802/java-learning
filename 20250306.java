@@ -322,10 +322,60 @@ public class Main {
     }
 }
 
+練習問題
+public class Cleric{
+}
+
+public class Cleric{
+    String name;
+    int hp = 50;
+    final int maxhp = 50;
+    int mp = 10;
+    final int maxmp = 10;
+}
+
+public class Cleric{
+    String name;
+    int hp = 50;
+    final int maxhp = 50;
+    int mp = 10;
+    final int maxmp = 10;
 
 
+    自分の回答
+    public void selfAid(){
+        if (mp > 5){
+            hp = 50;
+            System.out.println("体力を最大まで回復します");
+        }
+    }
+}
+模範回答
+public void selfAid() {
+    System.out.println(this.name + "はセルフエイドを唱えた！");
+    this.hp = this.MAX_HP;
+    this.mp -= 5;
+    System.out.println("HPが最大まで回復した");
+}
 
+自分の回答
+public void pray(){
+    System.out.println("聖職者は祈った！");
 
+    System.out.println("mpが回復した");
+}
 
+模範回答
+public int pray(int sec) {
+    System.out.println(this.name + "は" + sec + "秒間天に祈った！");
 
+    // 論理上の回復量を乱数を用いて決定する
+    int recover = new Random().nextInt(3) + sec;
 
+    // 実際の回復量を計算する
+    int recoverActual = Math.min(this.MAX_MP - this.mp, recover);
+
+    this.mp += recoverActual;
+    System.out.println("MPが" + recoverActual + "回復した");
+    return recoverActual;
+}
