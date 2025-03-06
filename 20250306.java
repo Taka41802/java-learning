@@ -145,12 +145,44 @@ public class Kouhan {
     }
 }
 
+オブジェクト指向の考え方
+public class Main {
+    public static void main(String[] args) {
+        // （以下の内容をJavaで記述していく）
+        // 勇者よ、この仮想世界に生まれよ！
+        // お化けキノコよ、この仮想世界に生まれよ！
+        // 勇者よ、戦え！
+        // お化けキノコよ、逃げろ！
+    }
+}
 
+クラス図の設計図に準じて書いていく
+public class Hero {
+    String name;
+    int hp;
+    public void attack() {/* … */}
+    public void sleep() {/* … */}
+    public void sit(int sec) {/* … */}
+    public void slip() {/* … */}
+    public void run() {/* … */}
+}
 
+クラスの宣言方法（ファイル名を揃えることに注意！）
+public class Hero {
+}
 
+属性の宣言
+クラスブロック内に宣言された変数をフィールドという
+public class Hero {
+    String name;  // 名前の宣言
+    int hp;       // HPの宣言
+}
 
-
-
+フィールドを宣言すると同時に初期値も設定
+public class Matango {
+    int hp;
+    int level = 10;
+}
 
 
 
