@@ -112,3 +112,50 @@ public class Kouhan {
         doTogame();    // もう一度、とがめる
     }
 }
+
+コンパイルする
+javac Main.java Zenhan.java Kouhan.java
+
+待ち時間を入れる
+public class Kouhan {
+    public static void callDeae() {
+        System.out.println("えぇい、こしゃくな。くせ者だ！であえい！");
+    }
+
+    public static void showMondokoro() throws Exception {
+        System.out.println("飛車さん、角さん。もういいでしょう。");
+        System.out.println("この紋所が目にはいらぬか！");
+        PrimeRun p = new PrimeRun(143);
+        new Thread(p).start();
+        doTogame();    // もう一度、とがめる
+    }
+}
+
+模範回答
+public class Kouhan {
+    public static void callDeae() {
+        System.out.println("えぇい、こしゃくな。くせ者だ！であえい！");
+    }
+
+    public static void showMondokoro() throws Exception {
+        System.out.println("飛車さん、角さん。もういいでしょう。");
+        System.out.println("この紋所が目にはいらぬか！");
+        Thread.sleep(3000);
+        doTogame();    // もう一度、とがめる
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
