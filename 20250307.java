@@ -280,3 +280,53 @@ public class Main {
 }
 
 便利な継承だが多重継承はjavaでは禁止
+
+メソッドの再定義をすることができる（オーバーライド）
+public class SuperHero extends Hero {
+    boolean flying;
+    public void fly() {
+        this.flying = true;
+        System.out.println("飛び上がった！");
+    }
+    public void land(){
+        this.flying = false;
+        System.out.println("着地した！");
+    }
+    public void run() {
+        System.out.println(this.name + "は撤退した");
+    }
+}
+
+ためにし呼び出してみると以下のような結果になる
+public class Main {
+    public static void main(String[] args) {
+        Hero h = new Hero();
+        h.run();
+        SuperHero sh = new SuperHero();
+        sh.run();
+    }
+}
+ミナトは逃げ出した！
+ミナトは撤退した
+
+final宣言されているクラスは継承不可！
+メソッドも同じため以下の場合だとslip()は継承できない
+public class Hero {
+    String name = "ミナト";
+    int hp = 100;
+
+    public void attack(Matango m) {
+        System.out.println(this.name + "の攻撃！");
+        m.hp -= 5;
+        System.out.println("5ポイントのダメージをあたえた!");
+    }
+    public final void slip() {
+        this.hp -= 5;
+        System.out.println(this.name + "は転んだ!");
+        System.out.println("5のダメージ");
+    }
+    public void run() {
+        System.out.println(this.name + "は逃げ出した！");
+    }
+}
+
