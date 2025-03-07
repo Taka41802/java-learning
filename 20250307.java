@@ -609,9 +609,69 @@ public class Hero extends Character {
     }
 }
 
+心配事その２
+本当になもしないコードとの区別がつかない
 
+心配事その３
+誤ってnewされてしまう可能性がある
 
+そのため一部でも未完成部分が残っている設計図から、実態（インスタンス）を生み出してはいけない
 
+上記のようなことを解決する仕組みがjavaに準備されている
 
+心配事その２の解決方法
+以下のようにabstractを使用する
+このようにabustractが使われているメソッドは抽象メソッドと呼ばれる
+public class Character {
+    String name;
+    int hp;
+    public void run() {
+        System.out.println(this.name + "は逃げ出した");
+    }
+    public abstract void attack(Matango m);
+}
 
+そのため、空のメソッドは何もしないメソッド、抽象メソッドは現時点では何をするか特定できないメソッドとして区別できる
 
+心配事その３の解決方法
+抽象メソッドを一つでも含むクラスの宣言はabustractを入れる必要がある
+忘れた場合はコンパイルエラーになる
+public abstract class Character {
+    String name;
+    int hp;
+    public void run() {
+        System.out.println(this.name + "は逃げ出した");
+    }
+    public abstract void attack(Matango m);
+}
+
+上記のように抽象クラスになった場合newによるインスタンス化が禁止される
+
+心配事その１
+抽象メソッドのオーバーライドのし忘れ
+public class Dancer extends Character {
+
+    public void dance() {
+        System.out.println(this.name + "は情熱的に踊った");
+    }
+}
+
+このコードをコンパイルしようとすると抽象メソッドをオーバーライドしなければいけないとエラーがでる
+
+親クラスに抽象メソッドがある場合、子クラスも受け継いでいるそのためこのエラーが出た場合は、
+①Dancerクラスの宣言にabustractをつけて抽象クラスにする
+②Dancerクラス内部の未完成部分を全て無くす
+
+①の方を取ればコンパイルエラーは消えます。しかし、抽象化クラスとなるためインスタンス化できません。
+開発したいのならば、②を取るしか方法はないのです。
+完成したコード
+public class Dancer extends Character {
+    public void dance() {
+        System.out.println(this.name + "は情熱的に踊った");
+    }
+    public void attack(Matango m) {
+        System.out.println(this.name + "の攻撃");
+        System.out.println("敵に3ポイントのダメージ");
+        m.hp -= 3;
+    }
+}
