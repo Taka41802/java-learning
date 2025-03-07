@@ -66,6 +66,7 @@ public class Main {
 }
 
 生まれた直後の動作を定義したHeroクラス
+これによりnewされた直後に自動的に実行される処理を組むことができる（コンストラクタ）
 public class Hero {
     String name;
     int hp;
@@ -79,14 +80,95 @@ public class Hero {
     }
 }
 
+コンストラクタが定義されたHeroを生み出す
+public class Main {
+    public static void main(String[] args) {
+        Hero h = new Hero();
 
+        System.out.println(h.hp);
+    }
+}
 
+コンストラクタと見なされる条件
+①メソッド名がクラスメイト完全に等しい
+②メソッド宣言に戻り値が記述されていない（voidもだめ）
 
+コンストラクタで引数を追加情報として受け取る
+このままだと引数エラー
+public class Hero {
+    String name;
+    int hp;
+    Sword sword;
+    public void attack() {
+        System.out.println(this.name + "は攻撃した！");
+        System.out.println("敵に5ポイントのダメージをあたえた！");
+    }
+    public Hero(String name) {
+        this.hp = 100;
+        this.name = name;    // 引数の値でnameフィールドを初期化
+    }
+}
 
+newの際に引数を渡すことで表示されるようになる
+public class Main {
+    public static void main(String[] args) {
+        Hero h = new Hero("ミナト");
 
+        System.out.println(h.hp);
+        System.out.println(h.name);
+    }
+}
 
+コンストラクタのオーバーロード
+これにより引数なしでインスタンスを作れる
+public class Hero {
+    String name;
+    int hp;
+    Sword sword;
+    public void attack() {
+        System.out.println(this.name + "は攻撃した！");
+        System.out.println("敵に5ポイントのダメージをあたえた！");
+    }
+    public Hero(String name) {
+        this.hp = 100;
+        this.name = name;    // 引数の値でnameフィールドを初期化
+    }
+    public Hero() {
+        this.hp = 100;
+        this.name = "ダミー";
+    }
+}
 
+public class Main {
+    public static void main(String[] args) {
+        Hero h1 = new Hero("ミナト");
+        System.out.println(h1.name);
+        Hero h2 = new Hero();
+        System.out.println(h2.name);
+    }
+}
 
+コンストラクタの特例
+クラスに1つもコンストラクタが定義されていない場合に限って、「引数なし、処理内容なし」の
+コンストラクタ（デフォルトコンストラクタ）がコンパイル時に自動的に追加される
+
+以下のように記述することで別のコンストラクタを呼び出すことができる
+public class Hero {
+    String name;
+    int hp;
+    Sword sword;
+    public void attack() {
+        System.out.println(this.name + "は攻撃した！");
+        System.out.println("敵に5ポイントのダメージをあたえた！");
+    }
+    public Hero(String name) {    // コンストラクタ①
+        this.hp = 100;
+        this.name = name;
+    }
+    public Hero() {    // コンストラクタ②
+        this("ダミー");
+    }
+}
 
 
 
