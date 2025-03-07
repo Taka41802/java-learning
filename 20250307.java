@@ -170,8 +170,47 @@ public class Hero {
     }
 }
 
+練習問題
+自分の回答
+public class Thief {
+    String name;
+    int hp;
+    int mp;
+}
+public Thief(String name,int hp,int mp){
+    this.name = name;
+    this.hp = hp;
+    this.mp = mp;
+}
+public Thief(String name,int hp){
+    this("name");
+    this(hp);
+    this.mp = 5;
+}
+public Thief(String name){
+    this("name");
+    this.hp = 40;
+    this.mp = 5;
+}
 
+模範回答
+public class Thief {
+    String name;
+    int hp;
+    int mp;
 
+    public Thief(String name, int hp, int mp) {
+        this.name = name;
+        this.hp = hp;
+        this.mp = mp;
+    }
+    public Thief(String name, int hp) {
+        this(name, hp, 5);
+    }
+    public Thief(String name) {
+        this(name, 40);
+    }
+}
 
 
 
