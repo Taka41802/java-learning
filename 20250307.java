@@ -330,3 +330,118 @@ public class Hero {
     }
 }
 
+インスタンスの多重構造になっているときは外側にある子インスタンスから対応しようとします
+そのため親インスタンスに同じメソッドがあっても実行しません
+
+親インスタンスのメソッドが役に立つ事例
+スーパーヒーローは空を飛んでいる状態で攻撃すると2回攻撃できる
+public class SuperHero extends Hero {
+    boolean flying;
+    public void fly(){
+        this.flying = true;
+        System.out.println("飛び上がった！");
+    }
+    public void land() {
+        this.flying = false;
+        System.out.println("着地した！");
+    }
+    public void run() {
+        System.out.println("撤退した");
+    }
+    public void attack(Matango m) {
+        System.out.println(this.name + "の攻撃！");
+        m.hp -= 5;
+        System.out.println("5ポイントのダメージをあたえた!");
+        if (this.flying) {
+            System.out.println(this.name + "の攻撃！");
+            m.hp -= 5;
+            System.out.println("5ポイントのダメージをあたえた!");
+        }
+    }
+}
+この状態では今後ヒーロークラスで攻撃が１０になったときに５ダメージを2回することになってしまいます（オーバーライドしているため）
+
+そんなときは親インスタンスのメソッドを呼びだして上げると解決できる
+public class SuperHero extends Hero {
+    boolean flying;
+    public void fly() {
+        this.flying = true;
+        System.out.println("飛び上がった！");
+    }
+    public void land() {
+        this.flying = false;
+        System.out.println("着地した！");
+    }
+    public void run() {
+        System.out.println("撤退した");
+    }
+    public void attack(Matango m) {
+        super.attack(m);
+        if (this.flying) {
+            super.attack(m);
+        }
+    }
+}
+
+superを使っても孫インスタンスが親の親インスタンスにアクセスすることはできない
+
+継承とコンストラクタ
+public class Hero {
+    String name = "ミナト";
+    int hp = 100;
+
+    public Hero() {
+        System.out.println("Heroのコンストラクタが動作");
+    }
+    public void attack(Matango m) {
+        System.out.println(this.name + "の攻撃！");
+        m.hp -= 5;
+        System.out.println("5ポイントのダメージをあたえた!");
+    }
+    public final void slip() {
+        this.hp -= 5;
+        System.out.println(this.name + "は転んだ!");
+        System.out.println("5のダメージ");
+    }
+    public void run() {
+        System.out.println(this.name + "は逃げ出した！");
+    }
+}
+
+public class SuperHero extends Hero {
+    boolean flying;
+
+    public SuperHero() {
+        System.out.println("SuperHeroのコンストラクタが動作");
+    }
+    public void fly() {
+        this.flying = true;
+        System.out.println("飛び上がった！");
+    }
+    public void land() {
+        this.flying = false;
+        System.out.println("着地した！");
+    }
+    public void run() {
+        System.out.println("撤退した");
+    }
+    public void attack(Matango m) {
+        super.attack(m);
+        if (this.flying) {
+            super.attack(m);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        SuperHero sh = new SuperHero();
+    }
+}
+
+この部分にsuper();が必要
+public SuperHero() {
+    super();
+    System.out.println("SuperHeroのコンストラクタが動作");
+}
+
