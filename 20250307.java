@@ -477,3 +477,60 @@ public class Weapon extends Item {
         super("名無しの剣");
     }
 }
+
+継承が正しく行われているか（ルール）
+子クラスis-a親クラスのルールがある
+間違った継承とは概念としてis-aの関係がないのに、継承を使ってしまうことである
+
+例　アイテムクラスを利用してハウスクラスを作る
+　　ハウスはアイテムの一種であるは間違った継承の使い方である
+
+is-aの原則が成立しないならば、たとえ楽ができるとしても継承を使ってはいけない
+理由は2つ
+・将来、クラスを拡張していった場合に現実世界との矛盾が生じるから
+・オブジェクト指向の３大機能の1つ多能性を利用できなくなる
+
+練習問題
+public class Matango {
+    int hp = 50;
+    char suffix;
+    public Matango(char suffix) {
+        this.suffix = suffix;
+    }
+    public void attack(Hero h) {
+        System.out.println("キノコ" + this.suffix + "の攻撃");
+        System.out.println("10のダメージ");
+        h.hp -= 10;
+    }
+}
+
+自分の回答
+public class PoisonMatango extends Matango{
+    public void attack(Hero h) {
+        int poison =5;
+       super.attack(Hero h);
+       if (poison > 0){
+        System.out.println("さらに毒の胞子をばら撒いた！");
+           h.hp = hp - hp/5;
+
+       }
+    }
+}
+
+模範回答
+public class PoisonMatango extends Matango {
+    int poisonCount = 5;
+    public PoisonMatango(char suffix) {
+        super(suffix);
+    }
+    public void attack(Hero h) {
+        super.attack(h);
+        if (poisonCount > 0) {
+            System.out.println("さらに毒の胞子をばらまいた！");
+            int dmg = h.hp / 5;
+            h.hp -= dmg;
+            System.out.println(dmg + "ポイントのダメージ！");
+            this.poisonCount--;
+        }
+    }
+}
