@@ -534,3 +534,84 @@ public class PoisonMatango extends Matango {
         }
     }
 }
+
+
+高度な継承
+クラスを作る際に不都合が出てくる
+public class Character {
+    String name;
+    int hp;
+    // 逃げる
+    public void run() {
+        System.out.println(this.name + "は逃げ出した");
+    }
+    // 戦う
+    public void attack(Matango m) {
+        System.out.println(this.name + "の攻撃！");
+        m.hp -= ??;
+        System.out.println("敵に？？ポイントのダメージをあたえた！");
+    }
+}
+
+詳細な値を入れることができない
+とりあえず空にしてみる
+public class Character {
+    String name;
+    int hp;
+    public void run() {
+        System.out.println(this.name + "は逃げ出した");
+    }
+    public void attack(Matango m) {
+    }
+}
+
+継承した際に作成したクラスでオーバーライドしてもらう
+public class Character {
+    String name;
+    int hp;
+    public void run() {
+        System.out.println(this.name + "は逃げ出した");
+    }
+    public void attack(Matango m) {
+    }
+}
+
+心配事の問題
+・オーバーライドを忘れる可能性がある
+public class Character {
+    String name;
+    int hp;
+    public void run() {
+        System.out.println(this.name + "は逃げ出した");
+    }
+    public void attack(Matango m) {
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Hero h = new Hero();
+        Matango m = new Matango();
+        h.attack(m);
+    }
+}
+上記だと
+mainメソッドでは攻撃が起こると思ってメソッドをよぶが何も起こらなくなってしまう
+解決策の一つとしてコメント機能を使うこともできるがミスをする可能性は残る
+
+さらに以下のようなスペルミスの可能性もある
+オーバーライドをしたつもりがスペルミスでなっていない
+public class Hero extends Character {
+    public void atack(Matango m) {
+        System.out.println(this.name + "の攻撃！");
+        System.out.println("敵に10ポイントのダメージをあたえた！");
+        m.hp -= 10;
+    }
+}
+
+
+
+
+
+
+
