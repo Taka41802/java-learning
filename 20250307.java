@@ -212,5 +212,71 @@ public class Thief {
     }
 }
 
+継承
+似通ったクラスの開発
+戦うと逃げるしかできないHeroクラス
+public class Hero {
+    String name = "ミナト";
+    int hp = 100;
+    // 戦う
+    public void attack(Matango m) {
+        System.out.println(this.name + "の攻撃！");
+        m.hp -= 5;
+        System.out.println("5ポイントのダメージをあたえた！");
+    }
+    // 逃げる
+    public void run() {
+        System.out.println(this.name + "は逃げ出した！");
+    }
+}
 
+より多くのことができるスーパーヒーロークラス
+public class SuperHero {
+    String name = "ミナト";
+    int hp = 100;
+    boolean flying;
+    // 戦う
+    public void attack(Matango m) {
+        System.out.println(this.name + "の攻撃！");
+        m.hp -= 5;
+        System.out.println("5ポイントのダメージをあたえた！");
+    }
+    // 逃げる
+    public void run() {
+        System.out.println(this.name + "は逃げ出した！");
+    }
+    // 飛ぶ
+    public void fly() {
+        this.flying = true;
+        System.out.println("飛び上がった！");
+    }
+    // 着地する
+    public void land() {
+        this.flying = false;
+        System.out.println("着地した！");
+    }
+}
 
+継承を利用してHeroクラスからSuperHeroクラスを作成する
+差分のみを記述すれば良い
+public class SuperHero extends Hero {
+    boolean flying;
+    public void fly() {
+        this.flying = true;
+        System.out.println("飛び上がった！");
+    }
+    public void land() {
+        this.flying = false;
+        System.out.println("着地した！");
+    }
+}
+
+上記のように継承すれば以下のようなクラスにないメソッドを呼び出せる
+public class Main {
+    public static void main(String[] args) {
+        SuperHero sh = new SuperHero();
+        sh.run();
+    }
+}
+
+便利な継承だが多重継承はjavaでは禁止
