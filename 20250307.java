@@ -445,3 +445,35 @@ public SuperHero() {
     System.out.println("SuperHeroのコンストラクタが動作");
 }
 
+
+コンストラクタを呼び出せない状況
+public class Item {
+    String name;
+    int price;
+    public Item(String name) {
+        this.name = name;
+        this.price = 0;
+    }
+    public Item(String name, int price) {
+        this.name = name;
+        this.price = price;
+    }
+}
+
+public class Weapon extends Item { /* … */ }
+
+public class Main {
+    public static void main(String[] args) {
+        Weapon w = new Weapon();
+    }
+}
+
+
+上記のような状態の場合
+引数が０のコンストラクタがないため呼び出すことができない
+このような場合はsuper()を使って引数を渡すことができる
+public class Weapon extends Item {
+    public Weapon(){
+        super("名無しの剣");
+    }
+}
