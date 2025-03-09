@@ -187,3 +187,49 @@ public class Wizard extends Character {
         this.mp -= 5;
     }
 }
+通常の方法でインスタンス化
+public class Main {
+    public static void main(String[] args) {
+        Wizard w = new Wizard();
+        Matango m = new Matango();
+        w.name = "アサカ";
+        w.attack(m);
+        w.fireball(m);
+    }
+}
+
+キャラクターの型に代入する
+しかし、ファイアボールを呼び出そうとするとエラーが起こる
+public class Main {
+    public static void main(String[] args) {
+        Wizard w = new Wizard();
+        Character c = w;
+        Matango m = new Matango();
+        c.name = "アサカ";
+        c.attack(m);
+        c.fireball(m);
+    }
+}
+
+キャラクターであるため攻撃はできるが、ファイアボールを打てる職業かわからないためエラーが起こる
+多能性ではざっくりと捉えるため、中にどのキャラクターが入っているかわからなくなってしまう
+
+メソッドが呼びだせた場合にどんな処理が起こるのか
+public abstract class Monster {
+    public void run(){
+        System.out.println("モンスターは逃げ出した。");
+    }
+}
+
+public class Slime extends Monster {
+    public void run() {
+        System.out.println("スライムはサササっと逃げ出した。");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Slime s = new Slime(); Monster m = new Slime();
+        s.run(); m.run();
+    }
+}
