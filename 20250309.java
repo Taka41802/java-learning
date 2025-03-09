@@ -54,3 +54,73 @@ public class Matango {
         System.out.println("お化けキノコ" + this.suffix + "は逃げ出した！");
     }
 }
+
+練習問題
+自分の回答
+public interface TangibleAsset {
+    String name;
+    int price;
+    String color;
+    String isbn;
+}
+
+public class Book implements TangibleAsset{ // コンストラクタ
+    public Book(String name, int price, String color, String isbn) {
+        this.name = name;
+        this.price = price;
+        this.color = color;
+        this.isbn = isbn;
+    }
+    // メソッド
+    public String getName() { return this.name; }
+    public int getPrice() { return this.price; }
+    public String getColor() { return this.color; }
+    public String getIsbn() { return this.isbn; }
+}
+
+public class Computer implements TangibleAsset{
+    public Computer(String name, int price, String color, String makerName) {
+        this.name = name;
+        this.price = price;
+        this.color = color;
+        this.makerName = makerName;
+    }
+    // メソッド
+    public String getName() { return this.name; }
+    public int getPrice() { return this.price; }
+    public String getColor() { return this.color; }
+    public String getMakerName() { return this.makerName; }
+}
+
+模範回答
+public abstract class TangibleAsset {
+    String name;
+    int price;
+    String color;
+    public TangibleAsset(String name, int price, String color) {
+        this.name = name;
+        this.price = price;
+        this.color = color;
+    }
+    public String getName() { return this.name; }
+    public int getPrice() { return this.price; }
+    public String getColor() { return this.color; }
+}
+
+public class Book extends TangibleAsset {
+    String isbn;
+    public Book(String name, int price, String color, String isbn) {
+        super(name, price, color);
+        this.isbn = isbn;
+    }
+    public String getIsbn() { return this.isbn; }
+}
+
+public class Computer extends TangibleAsset {
+    String makerName;
+    public Computer(String name, int price, String color, String makerName) {
+        super(name, price, color);
+        this.makerName = makerName;
+    }
+    public String getMakerName() { return this.makerName; }
+}
