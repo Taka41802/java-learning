@@ -153,3 +153,37 @@ public abstract class TangibleAsset extends Asset implements Thing {
     public double getWeight() { return this.weight; }
     public void setWeight(double weight) { this.weight = weight; }
 }
+
+多能性は他にも多様性やポリモーフィズムと呼ばれることもある
+
+別の型にインスタンスを入れることができる
+public class Main {
+    public static void main(String[] args) {
+        Life lf = new Wizard();
+    }
+}
+
+クリーチャーを継承して定義されたウィザード
+public abstract class Character {
+    String name;
+    int hp;
+    public void run() {
+        System.out.println(this.name + "は逃げ出した");
+    }
+    public abstract void attack(Matango m);
+}
+
+public class Wizard extends Character {
+    int mp;
+    public void attack(Matango m) {
+        System.out.println(this.name + "の攻撃！");
+        System.out.println("敵に3ポイントのダメージ");
+        m.hp -= 3;
+    }
+    public void fireball(Matango m) {
+        System.out.println(this.name + "は火の玉を放った！");
+        System.out.println("敵に20ポイントのダメージ");
+        m.hp -= 20;
+        this.mp -= 5;
+    }
+}
