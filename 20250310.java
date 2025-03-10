@@ -102,13 +102,144 @@ public class Main {
 ゴブリンは、腕をふって逃げ出した。
 地獄コウモリは、羽ばたいて逃げ出した。
 
+カプセル化
+アクセス制御されていないヒーロークラス
+public class Hero {
+    int hp;
+    String name;
+    Sword sword;
 
+    public void bye() {
+        System.out.println("勇者は別れを告げた");
+    }
+    public void die() {
+        System.out.println(this.name + "は死んでしまった！");
+        System.out.println("GAME OVERです。");
+    }
+    public void sleep() {
+        this.hp = 100;
+        System.out.println(this.name + "は眠って回復した！");
+    }
+    public void attack(Matango m) {
+        System.out.println(this.name + "の攻撃！");
+        /* … */
+        System.out.println("お化けキノコ" + m.suffix + "から2ポイントの反撃を受けた");
+        this.hp -= 2;
+        if (this.hp <= 0 ) {
+            this.die();
+        }
+    }
+    /* … */
+}
+この状態で不具合が起きる
+以下のようなコードになっていた
+public class Inn {
+    public void checkIn(Hero h) {
+        h.hp = -100;
+    }
+}
 
+public class King {
+    public void talk(Hero h) {
+        System.out.println("王様：ようこそ我が国へ、勇者" + h.name + "よ。");
+        System.out.println("王様：長旅疲れたであろう。");
+        System.out.println("王様：まずは城下町を見てくるとよい。ではまた会おう。");
+        h.die();
+        /* … */
+    }
+}
+など
+これらはヒーロークラス以外からは勇者のhpフィールドに値を設定できないや
+dieメソッドを呼べるのはヒーロークラスだけである
+上記のようなアクセス制御が盛り込まれていたらばくは事前に見つかったはずである
 
+privateによるアクセス制御
+public class Hero {
+    private int hp;
+    String name;
+    Sword sword;
 
+    public void bye() {
+        System.out.println("勇者は別れを告げた");
+    }
+    public void die() {
+        System.out.println(this.name + "は死んでしまった！");
+        System.out.println("GAME OVERです。");
+    }
+    public void sleep() {
+        this.hp = 100;
+        System.out.println(this.name + "は眠って回復した！");
+    }
+    public void attack(Matango m) {
+        System.out.println(this.name + "の攻撃！");
+        /* … */
+        System.out.println("お化けキノコ" + m.suffix + "から2ポイントの反撃を受けた");
+        this.hp -= 2;
+        if (this.hp <= 0 ) {
+            this.die();
+        }
+    }
+    /* … */
+}
+注意点　privateであっても自分のクラスからthisを使って読み書きは可能
 
+dieメソッドもprivateに変更
+public class Hero {
+    private int hp;
+    String name;
+    Sword sword;
 
+    public void bye() {
+        System.out.println("勇者は別れを告げた");
+    }
+    private void die() {
+        System.out.println(this.name + "は死んでしまった！");
+        System.out.println("GAME OVERです。");
+    }
+    public void sleep() {
+        this.hp = 100;
+        System.out.println(this.name + "は眠って回復した！");
+    }
+    public void attack(Matango m) {
+        System.out.println(this.name + "の攻撃！");
+        /* … */
+        System.out.println("お化けキノコ" + m.suffix + "から2ポイントの反撃を受けた");
+        this.hp -= 2;
+        if (this.hp <= 0 ) {
+            this.die();
+        }
+    }
+    /* … */
+}
 
+攻撃メソッドはさまざまなところで使用されるためpublicをつける
+public class Hero {
+    private int hp;
+    String name;
+    Sword sword;
+
+    public void bye() {
+        System.out.println("勇者は別れを告げた");
+    }
+    private void die() {
+        System.out.println(this.name + "は死んでしまった！");
+        System.out.println("GAME OVERです。");
+    }
+    void sleep() {
+        this.hp = 100;
+        System.out.println(this.name + "は眠って回復した！");
+    }
+    public void attack(Matango m) {
+        System.out.println(this.name + "の攻撃！");
+        /* … */
+        System.out.println("お化けキノコ" + m.suffix + "から2ポイントの反撃を受けた");
+        this.hp -= 2;
+        if (this.hp <= 0 ) {
+            this.die();
+        }
+    }
+    /* … */
+}
 
 
 
