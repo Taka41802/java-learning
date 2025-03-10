@@ -354,10 +354,68 @@ public class Hero {
     /* … */
 }
 
+メリット１
+Read Only,Write Onlyのフィールドを実現できる
 
+メリット２
+フィールドの名前など、クラスの内部設計を自由に変更できる
 
+メリット３
+フィールドへのアクセスを検査できる
+public class Hero {
+    private int hp;
+    private String name;
+    private Sword sword;
 
-
+    public String getName() {
+        return this.name;
+    }
+    public void setName(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("名前がnullである。処理を中断。");
+        }
+        if (name.length() <= 1) {
+            throw new IllegalArgumentException("名前が短すぎる。処理を中断。");
+        }
+        if (name.length() >= 8) {
+            throw new IllegalArgumentException("名前が長すぎる。処理を中断。");
+        }
+        this.name = name;
+    }
+    void bye() {
+        System.out.println("勇者は別れを告げた");
+    }
+    private void die() {
+        System.out.println(this.name + "は死んでしまった！");
+        System.out.println("GAME OVERです。");
+    }
+    void sleep() {
+        this.hp = 100;
+        System.out.println(this.name + "は、眠って回復した！");
+    }
+    public void attack(Matango m) {
+        System.out.println(this.name + "の攻撃！");
+        /* … */
+        System.out.println("お化けキノコ" + m.suffix + "から2ポイントの反撃を受けた");
+        this.hp -= 2;
+        if (this.hp <= 0) {
+            this.die();
+        }
+    }
+    /* … */
+}
+上記の場合だと
+public class Main {
+    public static void main(String[] args) {
+        Hero h = new Hero();
+        h.setName("");
+    }
+}
+このような状態になったときに
+Exception in thread "main" java.lang.IllegalArgumentException: 名前が短すぎる。処理を中断。
+at Hero.setName(Hero.java:14)
+at Main.main(Main.java:4)
+きちんと処理が中断されるようになる
 
 
 
