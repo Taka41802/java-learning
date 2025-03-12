@@ -110,3 +110,16 @@ public class Wizard {
         this.wand = wand;
     }
 }
+
+何も定義していないクラスでtoString()を呼ぶ
+public class Empty {}
+
+public class Main {
+    public static void main(String[] args) {
+        Empty e = new Empty();
+        String s = e.toString();
+        System.out.println(s);
+    }
+}
+
+全てのインスタンスはオブジェクトの型を持つようになる
