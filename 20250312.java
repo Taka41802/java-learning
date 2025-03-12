@@ -150,8 +150,42 @@ public class Main {
     }
 }
 
+静的メソッドから非静的メンバを利用する（エラー）
+public class Hero {
+    String name;
+    int hp;
+    static int money;
+    /* … */
+    static void setRandomMoney() {
+        Hero.money = (int)(Math.random() * 1000);
+        System.out.println(this.name + "たちの所持金を初期化しました");
+    }
+}
 
+練習問題
+public class Account{
+    String accountNumber;
+    int balance;
 
+    public String toString(){
+        return "¥¥" + this.balance +
+                "(口座番号：" + this.accountNumber + ")";
+    }
+    public boolean equals(object o){
+        if (this == o){
+            retern ture;
+        }
+        if (o instanceof Account){
+            Account a = (Account) o;
+            String an1 = this.accountNumber.trim();
+            String an2 = a.accountNumber.trim();
+            if (an1.equals(an2)){
+                return true;
+            }
+        }
+        return false;
+    }
+}
 
 
 
