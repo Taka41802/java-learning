@@ -244,6 +244,141 @@ public class Main {
 Stringインスタンスはインスタンス時に初期化され以降二度と変化することはない
 Stringインスタンスに代入しているように見えているのは新しくnewで連結後の情報を持つインスタンスを作っていルカらになる
 
+プレイヤー名判定メソッド
+public class Main {
+    public static void main(String[] args) {
+    }
+
+    public boolean isValidPlayerName(String name) {
+        if (name.length() != 8) {
+            return false;
+        }
+        char first = name.charAt(0);
+        if (!(first >= 'A' && first <= 'Z')) {
+            return false;
+        }
+        for (int i = 1; i < 8; i++) {
+            char c = name.charAt(i);
+            if (!((c >= 'A' && c <= 'Z') || (c >= '0' && first <= '9'))) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+matchesメソッドを使った場合
+public class Main {
+    public static void main(String[] args) {
+    }
+
+    public boolean isValidPlayerName(String name) {
+        return name.matches("[A-Z][A-Z0-9]{7}");
+    }
+}
+
+splitメソッドを使った文字列の分割
+public class Main {
+    public static void main(String[] args) {
+        String s = "abc,def:ghi";
+        String[] words = s.split("[,:]");
+        for (String w : words) {
+            System.out.print(w + "->");
+        }
+    }
+}
+
+replaceAllメソッドを使った文字列の置換
+public class Main {
+    public static void main(String[] args) {
+        String s = "abc,def:ghi";
+        String w = s.replaceAll("[beh]", "X");
+        System.out.println(w);  // aXc,dXf:gXi
+    }
+}
+
+桁を揃えてキャラクターを表示する
+public class Main {
+    public static void main(String[] args) {
+        Hero hero = new Hero();
+        hero.name = "minato";
+        hero.job = "hero";
+        hero.gold = 280;
+
+        final String FORMAT = "%-9s %-13s 所持金%,6d";
+        String s = String.format(FORMAT, hero.getName(), hero.getJob(), hero.getGold());
+        System.out.println(s);
+    }
+}
+minato    hero          所持金   280
+
+処理時間を計測する
+public class Main {
+    public static void main(String[] args) {
+        long start = System.currentTimeMillis();
+        // ここでなんらかの時間がかかる処理
+        long end = System.currentTimeMillis();
+        System.out.println("処理にかかった時間は..." + (end-start) + "ミリ秒でした");
+    }
+}
+
+現在の日時を表示する
+import java.util.Date;
+
+public class Main {
+    public static void main(String[] args) {
+        Date now = new Date();
+        System.out.println(now);
+        System.out.println(now.getTime());
+        Date past = new Date(1600705425827L);
+        System.out.println(past);
+    }
+}
+Wed Mar 12 13:31:57 JST 2025
+        1741753917471
+Tue Sep 22 01:23:45 JST 2020
+
+6つのint値とDate型の相互変換
+import java.util.Calendar;
+import java.util.Date;
+public class Main {
+    public static void main(String[] args) {
+        Calendar c = Calendar.getInstance();
+        // 6つのint値からDateインスタンスを生成
+        c.set(2019,8,22,1,23,45);
+        c.set(Calendar.MONTH, 9);     /* 月を9（10月）に変更 */
+        Date d = c.getTime();
+        System.out.println(d);
+        // Dateインスタンスからint値を生成
+        Date now = new Date();
+        c.setTime(now);
+        int y = c.get(Calendar.YEAR);  /* 年を取り出す */
+        System.out.println("今年は" + y + "年です");
+    }
+}
+
+String型とDate型の相互変換
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        // 文字列からDateインスタンスを生成
+        Date d = f.parse("2020/09/22 01:23:45");
+        System.out.println(d);
+        // Dateインスタンスから文字列を生成
+        Date now = new Date();
+        String s = f.format(now);
+        System.out.println("現在は" + s + "です");
+    }
+}
+
+
+
+
+
+
 
 
 
