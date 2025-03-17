@@ -65,3 +65,52 @@ at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLC
 at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:223)
 at java.base/java.net.URL.openStream(URL.java:1325)
 at Main.main(Main.java:7)
+
+DBに接続してSQLを送信する
+import java.sql.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Class.forName("org.h2.Driver");
+        String dburl = "jdbc:h2:~/test";
+        String sql = "INSERT INTO EMPLOYEES(NAME) VALUES('aoki')";
+        Connection conn = DriverManager.getConnection(dburl);
+        conn.createStatement().executeUpdate(sql);
+        conn.close();
+    }
+}
+
+javaではGUIも作ることができる
+import java.awt.FlowLayout;
+import javax.swing.*;
+
+public class Main {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("はじめてのGUI");
+        JLabel label = new JLabel("Hello World!!");
+        JButton button = new JButton("押してね");
+        frame.getContentPane().setLayout(new FlowLayout());
+        frame.getContentPane().add(label);
+        frame.getContentPane().add(button);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 100);
+        frame.setVisible(true);
+    }
+}
+
+webアプリケーションを作る場合はサーブレットを使う
+import java.io.*;
+        import java.util.Date;
+import javax.servlet.http.*;
+
+@WebServlet("/HelloServlet")
+public class HelloServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        Date d = new Date();
+        PrintWriter w = res.getWriter();
+        res.setContentType("text/html");
+        w.write("<html><body>");
+        w.write("Today is " + d.toString());
+        w.write("</body></html>");
+    }
+}
