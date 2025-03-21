@@ -108,14 +108,60 @@ public class Main {
     }
 }
 
+HashSetの利用でremove()できない例
+class Hero {
+    public String name;
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (o == null) return false;
+        if (!(o instanceof Hero)) return false;
+        Hero h = (Hero) o;
+        if (!this.name.trim().equals(h.name.trim())) {
+            return false;
+        }
+        return true;
+    }
+}
 
+import java.util.*;
 
+public class Main {
+    public static void main(String[] args) {
+        Set<Hero> list = new HashSet<>();
+        Hero h1 = new Hero();
+        h1.name = "ミナト";
+        list.add(h1);
+        System.out.println("要素数=" + list.size());
+        h1 = new Hero();
+        h1.name = "ミナト";
+        list.remove(h1);
+        System.out.println("要素数=" + list.size());
+    }
+}
 
+HeroクラスでhashCodeをオーバーライド
+import java.util.Objects;
 
+public class Hero {
+    String name;
+    int hp;
 
+    public int hashCode() {
+        return Objects.hash(this.name, this.hp);
+    }
+}
 
+public class Main {
+    public static void main(String[] args) {
+        Hero h1 = new Hero();
+        h1.name = "ミナト";
+        h1.hp = 100;
 
+        System.out.println(h1.hashCode());
+    }
+}
 
+エラーが起きていたのは、hashCodeをオーバーライドしていなかったため
 
 
 
