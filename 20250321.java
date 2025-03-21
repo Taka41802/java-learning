@@ -163,9 +163,47 @@ public class Main {
 
 エラーが起きていたのは、hashCodeをオーバーライドしていなかったため
 
+インスタンスの並び替え（エラー）
+一つだけ制約があるため、それを意識せずに書くとエラーになる
+import java.util.*;
 
+public class Main {
+    public static void main(String[] args) {
+        List<Account> list = new ArrayList<>();
+        /* : */
+        Collections.sort(list);
+    }
+}
 
+public class Account {
+    String accountNo;  // 口座番号（先頭に空白が入ることもある）
 
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (o == null) return false;
+        if(!(o instanceof Account)) return false;
+        Account r = (Account) o;
+        if (!this.accountNo.trim().equals(r.accountNo.trim())) {
+            return false;
+        }
+        return true;
+    }
+}
+
+アカウントクラスの自然順序付を定義
+public class Account implements Comparable<Account> {
+    int number;    // 口座番号
+    int zandaka;   // 残高
+    public int compareTo(Account obj) {
+        if (this.number < obj.number) {
+            return -1;
+        }
+        if (this.number > obj.number) {
+            return 1;
+        }
+        return 0;
+    }
+}
 
 
 
