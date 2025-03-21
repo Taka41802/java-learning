@@ -67,3 +67,63 @@ public class Main {
         System.out.println(a1.equals(a2));
     }
 }
+不具合につながる例
+public class Hero {
+    public String name;
+}
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Hero> list = new ArrayList<>();
+        Hero h1 = new Hero();
+        h1.name = "ミナト";
+        list.add(h1);
+        System.out.println("要素数=" + list.size());
+        h1 = new Hero();
+        h1.name = "ミナト";
+        list.remove(h1);
+        System.out.println("要素数=" + list.size());
+    }
+}
+
+要素数=1
+要素数=1
+
+remove()は引数として渡されたインスタンスについて、これと同じものを削除してとお願いするため
+同じものの定義が正しく行われないと削除されなくなる
+
+そのため、クラスを作ったら必ずequals()メソッドをオーバーライドする
+
+配列をequals()で比較する
+    import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] a = {1, 2, 3, 4, 5};
+        int[] b = {1, 2, 3, 4, 5};
+        System.out.println("誤った判定：" + a.equals(b));
+        System.out.println("正しい判定：" + Arrays.equals(a, b));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
