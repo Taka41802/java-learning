@@ -145,3 +145,10 @@ public class Main{
         System.out.println("ログインを試みたユーザー名は" + h.user());
     }
 }
+
+コンパクト・コンストラクタ
+public record LoginHistory(String user, int retry, boolean result) {
+    public LoginHistory {
+        if (retry < 0) throw new IllegalArgumentException();
+    }
+}
